@@ -14,5 +14,8 @@ public:
 	Book();
 	Book(string name, string a, string g, bool check, Visitor* v);
 	string getBookName();
+	string getGenre();
+	string getAuthor();
+	bool getIsOnHands();
+	Visitor* getVisitor();
 };
-

@@ -18,3 +18,23 @@ string Book::getBookName()
 {
 	return bookName;
 }
+
+string Book::getGenre()
+{
+	return genre;
+}
+
+string Book::getAuthor()
+{
+	return author;
+}
+
+bool Book::getIsOnHands()
+{
+	return isOnHands;
+}
+
+Visitor* Book::getVisitor()
+{
+	return visitor;
+}
