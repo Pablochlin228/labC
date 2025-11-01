@@ -49,6 +49,10 @@ int main()
 				{
 					isOnHands = false;
 				}
+				else
+				{
+					throw "Incorrect option!";
+				}
 
 				Visitor* visitor = nullptr;
 				if (isOnHands)
@@ -78,18 +82,69 @@ int main()
 				cout << "Enter the name of book you want to find:" << endl;
 				cin.ignore();
 				getline(cin, search);
+				if (library.searchByName(search) == -1)
+				{
+					cout << "There arent any book with this name!" << endl;
+				}
+				else
+				{
+					cout << "Your book number is: " << library.searchByName(search) + 1 << endl;
+				}
+				break;
 			}
-			case 3:
-				throw "Incorrect operation!";
-			case 4:
-				throw "Incorrect operation!";
+			case 3: {
+				string search2;
+				cout << "Enter the genre of book you want to find:" << endl;
+				cin.ignore();
+				getline(cin, search2);
+				if (library.serchByGenre(search2) == -1)
+				{
+					cout << "There arent any book with this genre!" << endl;
+				}
+				else
+				{
+					cout << "Your book number is: " << library.serchByGenre(search2) + 1 << endl;
+				}
+				break;
+			}
+			case 4: {
+				string search3;
+				cout << "Enter the author of book you want to find:" << endl;
+				cin.ignore();
+				getline(cin, search3);
+				if (library.serchByAuthor(search3) == -1)
+				{
+					cout << "There arent any book with this author!" << endl;
+				}
+				else
+				{
+					cout << "Your book number is: " << library.serchByAuthor(search3) + 1 << endl;
+				}
+				break;
+			}
 			case 5:
 				library.showAllBooks();
 				break;
 			case 6:
-				throw "Incorrect operation!";
-			case 7:
-				throw "Incorrect operation!";
+
+				break;
+			case 7: {
+				string bookname;
+				cout << "Enter the name of the book you want to return: " << endl;
+				cin.ignore();
+				getline(cin, bookname);
+				int index = library.searchByName(bookname);
+				if (index == -1)
+				{
+					throw "There arent any book with this name!";
+				}
+				else
+				{
+					library.returnBookToLibrary(index);
+					cout << "You return the book!" << endl;
+				}
+				break;
+			}
 			default:
 				throw "Incorrect operation!";
 			}
@@ -98,6 +153,5 @@ int main()
 		{
 			cout << "Catch exception " << str << endl;
 		}
-
 	}
 }

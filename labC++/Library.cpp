@@ -113,6 +113,11 @@ int Library::serchByAuthor(string n)
 
 void Library::showAllBooks()
 {
+	if (count == 0)
+	{
+		cout << "There arent any books in library!" << endl;
+		return;
+	}
 	cout << "-----Books-----" << endl;
 	for (int i = 0; i < count; i++)
 	{
@@ -140,5 +145,15 @@ void Library::showAllBooks()
 		cout << endl;
 	}
 	cout << "---------------" << endl;
+}
+
+void Library::showFrequentVisitor()
+{
+
+}
+
+void Library::returnBookToLibrary(int index)
+{
+
 }
 
