@@ -19,7 +19,8 @@ public:
 	int serchByGenre(string n);
 	int serchByAuthor(string n);
 	void showAllBooks();
-	void showFrequentVisitor();
+	Visitor* getFrequentVisitor();
 	void returnBookToLibrary(int index);
+	void takeBookFromLibrary(int index,Visitor* v);
 };
 

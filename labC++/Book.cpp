@@ -38,3 +38,13 @@ Visitor* Book::getVisitor()
 {
 	return visitor;
 }
+
+void Book::SetIsOnHands(bool status)
+{
+	isOnHands = status;
+}
+
+void Book::SetVisitor(Visitor* v)
+{
+	visitor = v;
+}

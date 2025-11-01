@@ -18,4 +18,6 @@ public:
 	string getAuthor();
 	bool getIsOnHands();
 	Visitor* getVisitor();
+	void SetIsOnHands(bool status);
+	void SetVisitor(Visitor* v);
 };

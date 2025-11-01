@@ -147,13 +147,54 @@ void Library::showAllBooks()
 	cout << "---------------" << endl;
 }
 
-void Library::showFrequentVisitor()
+Visitor* Library::getFrequentVisitor()
 {
+	if (visitorsCount == 0)
+	{
+		return nullptr;
+	}
 
+	int maxBooks = 0;
+	int maxIndex = 0;
+	for (int i = 0; i < visitorsCount; i++)
+	{
+		if (visitors[i].getBookOnHandsCount() > maxBooks)
+		{
+			maxBooks = visitors[i].getBookOnHandsCount();
+			maxIndex = i;
+		}
+	}
+	return &visitors[maxIndex];
 }
 
 void Library::returnBookToLibrary(int index)
 {
+	Book& book = ptr[index];
+	if (book.getIsOnHands() == false)
+	{
+		cout << "Book is available!" << endl;
+		return;
+	}
+	else if (book.getVisitor() != nullptr)
+	{
+		book.getVisitor()->returnBook();
+		book.SetIsOnHands(false);
+		book.SetVisitor(nullptr);
+	}
+}
 
+void Library::takeBookFromLibrary(int index, Visitor* v)
+{
+	Book& book = ptr[index];
+	if (book.getIsOnHands() == true)
+	{
+		cout << "Book is unavailable!" << endl;
+		return;
+	}
+	else
+	{
+		book.SetVisitor(v);
+		book.SetIsOnHands(true);
+	}
 }
 

@@ -20,6 +20,8 @@ int main()
 		cout << "5)Show all books" << endl;
 		cout << "6)Show a frequent library visitor" << endl;
 		cout << "7)Return book to library" << endl;
+		cout << "8)Take book to library" << endl;
+		cout << "9)Exit" << endl;
 		cin >> choice;
 
 		try
@@ -125,9 +127,21 @@ int main()
 			case 5:
 				library.showAllBooks();
 				break;
-			case 6:
-
+			case 6: {
+				Visitor* visitor = library.getFrequentVisitor();
+				if (visitor == nullptr)
+				{
+					throw "There arent any visitors!";
+				}
+				else
+				{
+					cout << "Most frequent visitor: " << endl;
+					cout << "Surname: " << visitor->getSurname() << endl;
+					cout << "Id: " << visitor->getId() << endl;
+					cout << "Books on hand: " << visitor->getBookOnHandsCount() << endl;
+				}
 				break;
+			}
 			case 7: {
 				string bookname;
 				cout << "Enter the name of the book you want to return: " << endl;
@@ -145,6 +159,35 @@ int main()
 				}
 				break;
 			}
+			case 8: {
+				string bookname2;
+				cout << "Enter the name of the book you want to take: " << endl;
+				cin.ignore();
+				getline(cin, bookname2);
+				int index2 = library.searchByName(bookname2);
+				if (index2 == -1)
+				{
+					throw "There arent any book with this name!";
+				}
+				else
+				{
+					Visitor* visitor = nullptr;
+					string surname2;
+					int id2;
+					cout << "Enter your surname: " << endl;
+					cin.ignore();
+					getline(cin, surname2);
+					cout << "Enter your id: " << endl;
+					cin >> id2;
+					visitor = library.addVisitirToLibrary(surname2, id2);
+					library.takeBookFromLibrary(index2,visitor);
+					cout << "You take the book!" << endl;
+				}
+				break;
+			}
+			case 9:
+				cout << "Programme is done!" << endl;
+				return false;
 			default:
 				throw "Incorrect operation!";
 			}
